@@ -1,0 +1,251 @@
+body {
+    margin: 0;
+    font-family: "Inter", Arial, sans-serif;
+    background: linear-gradient(135deg, #E8DAF0, #D8BEE5);
+    height: 100vh;
+    overflow: hidden;
+    
+}
+
+.login-wrapper {
+    display: flex;
+    height: 100vh;
+}
+
+.login-left {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffffee;
+    padding: 45px;
+    border-radius: 20px;
+    box-shadow: 
+        10px 10px 25px rgba(0,0,0,0.15),
+        -7px -7px 20px rgba(255,255,255,0.9);
+    animation: fadeIn 0.7s ease;
+    border: 1px solid #f8f1fc;
+}
+
+.system-title {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.system-title h1 {
+    margin: 0;
+    font-size: 26px;
+    color: #4b2b63;
+    font-weight: 700;
+}
+
+.system-title p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #6f4f88;
+}
+
+.input-field {
+    margin-bottom: 22px;
+}
+
+.input-field label {
+    font-size: 14px;
+    color: #4b2b63;
+    font-weight: 600;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 14px;
+    margin-top: 6px;
+    border-radius: 10px;
+    border: 1px solid #D8BEE5;
+    font-size: 15px;
+    background: #fff;
+    transition: 0.25s;
+}
+
+.input-field input:focus {
+    border-color: #b88ed9;
+    box-shadow: 0 0 8px #d7c3eb;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    background: linear-gradient(135deg, #b88ed9, #D8BEE5);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+}
+
+.error-msg {
+    color: #d9534f;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media screen and (max-width: 900px){
+    .login-wrapper {
+        flex-direction: column;
+    }
+    .login-left, .login-right {
+        width: 100%;
+        height: 50%;
+    }
+}
+
+.navbar {
+    width: 100%;
+    background: #ffffffdd;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 
+        0px 4px 16px rgba(0,0,0,0.08),
+        0px 0px 10px rgba(255,255,255,0.8) inset;
+    backdrop-filter: blur(6px);
+}
+
+.navbar .logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #4b2b63;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #4b2b63;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+
+.dashboard-content {
+    width: 85%;
+    margin: 40px auto;
+    animation: fadeIn 0.7s ease;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.dashboard-header h2 {
+    font-size: 30px;
+    color: #40245a;
+    margin: 0;
+}
+
+.dashboard-header p {
+    margin-top: 8px;
+    font-size: 15px;
+    color: #6f4f88;
+}
+
+
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.card {
+    width: 250px;
+    padding: 40px 25px;
+    background: #ffffffdd;
+    border-radius: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 
+        8px 8px 20px rgba(0,0,0,0.10),
+        -6px -6px 20px rgba(255,255,255,0.9);
+    border: 1px solid #f3e9ff;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    background: linear-gradient(135deg, #D8BEE5, #C5A7DF);
+    box-shadow:
+        10px 10px 25px rgba(0,0,0,0.18),
+        -4px -4px 12px rgba(255,255,255,0.7);
+}
+
+.card:hover h3,
+.card:hover p,
+.card:hover i {
+    color: white;
+}
+
+.card i {
+    font-size: 45px;
+    color: #6a4c7d;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    font-size: 22px;
+    color: #4b2b63;
+    margin: 10px 0 5px;
+}
+
+.card p {
+    color: #6f4f88;
+    font-size: 14px;
+}
+
+.logout-btn {
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #D8BEE5, #b88ed9);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+}
+
+
+@media screen and (max-width: 900px) {
+    .navbar {
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
