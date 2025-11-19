@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
     calendar.render();
 });
 
-// EDIT APPOINTMENT
 function openEditModal(event) {
     currentAppointmentId = event.id;
     const [name, concern] = event.title.split(' - ');
@@ -43,8 +42,6 @@ function openEditModal(event) {
     document.getElementById('appointmentModal').style.display = 'flex';
 }
 
-// RESCHEDULE FROM LIST
-// FOLLOW-UP FROM LIST
 function openFollowUpFromList(id, name) {
     currentAppointmentId = id;
     const el = document.getElementById('followupStudentName');
@@ -63,7 +60,6 @@ function confirmFollowUpFromList() {
 
     const event = calendar.getEventById(currentAppointmentId);
     if (event) {
-        // We'll create a new 'follow-up' event linked to this appointment for demo purposes
         const followId = currentAppointmentId + '-followup-' + Date.now();
         calendar.addEvent({
             id: followId,
@@ -80,7 +76,6 @@ function confirmFollowUpFromList() {
     closeModal('followupModal');
 }
 
-// UPDATE APPOINTMENT
 function updateAppointment(event) {
     const name = document.getElementById('studentNameInput').value.trim();
     const concern = document.getElementById('concernInput').value.trim();
@@ -109,7 +104,6 @@ function markStatus(id, status) {
     showToast(`Marked as ${status === 'done' ? 'Done' : 'Monitoring'}`, 'success');
 }
 
-// UNIVERSAL CLOSE MODAL FUNCTION
 function closeModal(modalId = null) {
     const modals = modalId ? [modalId] : ['appointmentModal', 'followupModal', 'chatModal'];
     modals.forEach(id => {
@@ -120,7 +114,6 @@ function closeModal(modalId = null) {
     if (extra) extra.style.display = 'none';
 }
 
-// CHAT
 function openChatModal(name, id) {
     document.getElementById('chatStudentName').textContent = name;
     document.getElementById('chatStudentId').textContent = id;
@@ -140,7 +133,6 @@ function sendMessage() {
     input.value = '';
 }
 
-// TOAST
 function showToast(message, type = 'success') {
     const toast = document.createElement('div');
     toast.textContent = message;
@@ -154,9 +146,33 @@ function showToast(message, type = 'success') {
     setTimeout(() => toast.remove(), 3500);
 }
 
-// CLOSE MODAL WHEN CLICKING OUTSIDE
 window.addEventListener('click', function (e) {
     if (e.target.classList.contains('modal')) {
         closeModal(e.target.id);
+    }
+});
+
+function toggleProfileDropdown(e) {
+    e.stopPropagation();
+    const dd = document.getElementById('profileDropdown');
+    if (!dd) return;
+    const isHidden = dd.getAttribute('aria-hidden') !== 'false';
+    dd.setAttribute('aria-hidden', isHidden ? 'false' : 'true');
+}
+
+function closeProfileDropdown() {
+    const dd = document.getElementById('profileDropdown');
+    if (!dd) return;
+    dd.setAttribute('aria-hidden', 'true');
+}
+
+document.addEventListener('click', function (e) {
+    const dd = document.getElementById('profileDropdown');
+    const btn = document.getElementById('profileBtn');
+    if (!dd) return;
+    if (dd.getAttribute('aria-hidden') === 'false') {
+        if (!dd.contains(e.target) && btn && !btn.contains(e.target)) {
+            dd.setAttribute('aria-hidden', 'true');
+        }
     }
 });
