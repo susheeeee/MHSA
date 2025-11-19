@@ -72,10 +72,24 @@ if (isset($_POST['login'])) {
             </div>
         </div>
     </div>
-    <div class="login-right"></div>
+    <div class="login-right">
+        <div class="hotline" role="note" aria-label="Crisis hotline">
+            <a class="hotline-card" href="tel:09175584673" aria-label="Call Hopeline PH 0917-558-4673">
+                <!-- inline phone SVG for crisp icon without external deps -->
+                <span class="hotline-icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.07.78.24 1.53.5 2.24a2 2 0 0 1-.45 2.11L9.91 10.91a16 16 0 0 0 6.18 6.18l1.84-1.18a2 2 0 0 1 2.11-.45c.71.26 1.46.43 2.24.5A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                </span>
+                <span class="hotline-text">
+                    <strong>In Crisis?</strong>
+                    <small> Call Hopeline PH</small>
+                </span>
+                <span class="hotline-number">0917-558-4673</span>
+            </a>
+        </div>
+    </div>
 </div>
 
 </body>
 </html>
-
-ikoiojio
