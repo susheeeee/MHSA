@@ -42,7 +42,7 @@ if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'counselor') {
                 <div class="actions">
                     <button class="action-btn done-btn" onclick="markStatus(1, 'done')">Done</button>
                     <button class="action-btn monitoring-btn" onclick="markStatus(1, 'monitoring')">Monitoring</button>
-                    <button class="action-btn reschedule-btn" onclick="openRescheduleFromList(1, 'Maria Clara Santos')">Reschedule</button>
+                    <button class="action-btn reschedule-btn" onclick="openFollowUpFromList(1, 'Maria Clara Santos')">Follow Up</button>
                     <button class="action-btn chat-btn" onclick="openChatModal('Maria Clara Santos', '2021001')">
                         Chat
                     </button>
@@ -58,7 +58,7 @@ if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'counselor') {
                 <div class="actions">
                     <button class="action-btn done-btn" onclick="markStatus(2, 'done')">Done</button>
                     <button class="action-btn monitoring-btn" onclick="markStatus(2, 'monitoring')">Monitoring</button>
-                    <button class="action-btn reschedule-btn" onclick="openRescheduleFromList(2, 'Juan Luna Reyes')">Reschedule</button>
+                    <button class="action-btn reschedule-btn" onclick="openFollowUpFromList(2, 'Juan Luna Reyes')">Follow Up</button>
                     <button class="action-btn chat-btn" onclick="openChatModal('Juan Luna Reyes', '2021002')">
                         Chat
                     </button>
@@ -74,7 +74,7 @@ if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'counselor') {
                 <div class="actions">
                     <button class="action-btn done-btn" onclick="markStatus(3, 'done')">Done</button>
                     <button class="action-btn monitoring-btn" onclick="markStatus(3, 'monitoring')">Monitoring</button>
-                    <button class="action-btn reschedule-btn" onclick="openRescheduleFromList(3, 'Anna Sofia Lim')">Reschedule</button>
+                    <button class="action-btn reschedule-btn" onclick="openFollowUpFromList(3, 'Anna Sofia Lim')">Follow Up</button>
                     <button class="action-btn chat-btn" onclick="openChatModal('Anna Sofia Lim', '2021003')">
                         Chat
                     </button>
@@ -108,17 +108,21 @@ if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'counselor') {
     </div>
 </div>
 
-<!-- RESCHEDULE MODAL (from Today's Schedule) -->
-<div class="modal" id="rescheduleModal">
+<!-- FOLLOW-UP MODAL (from Today's Schedule) -->
+<div class="modal" id="followupModal">
     <div class="modal-content">
-        <span class="close-modal" onclick="closeModal('rescheduleModal')">×</span>
-        <h3>Reschedule Appointment</h3>
-        <p><strong>Student:</strong> <span id="rescheduleStudentName"></span></p>
+        <span class="close-modal" onclick="closeModal('followupModal')">×</span>
+        <h3>Schedule Follow-Up</h3>
+        <p><strong>Student:</strong> <span id="followupStudentName"></span></p>
         <div class="input-field">
-            <label>New Date & Time</label>
-            <input type="datetime-local" id="newDateTime" required>
+            <label>Follow-Up Date & Time</label>
+            <input type="datetime-local" id="followupDateTime" required>
         </div>
-        <button class="btn" onclick="confirmRescheduleFromList()" style="margin-top:15px;">Confirm Reschedule</button>
+        <div class="input-field">
+            <label>Notes (optional)</label>
+            <textarea id="followupNotes" rows="3" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e9dff3;"></textarea>
+        </div>
+        <button class="btn" onclick="confirmFollowUpFromList()" style="margin-top:15px;">Schedule Follow-Up</button>
     </div>
 </div>
 

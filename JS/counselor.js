@@ -44,36 +44,40 @@ function openEditModal(event) {
 }
 
 // RESCHEDULE FROM LIST
-function openRescheduleFromList(id, name) {
+// FOLLOW-UP FROM LIST
+function openFollowUpFromList(id, name) {
     currentAppointmentId = id;
-    document.getElementById('rescheduleStudentName').textContent = name;
+    const el = document.getElementById('followupStudentName');
+    if (el) el.textContent = name;
     const event = calendar.getEventById(id);
     if (event) {
-        document.getElementById('newDateTime').value = event.start.toISOString().slice(0, 16);
+        document.getElementById('followupDateTime').value = event.start.toISOString().slice(0, 16);
     }
-    document.getElementById('rescheduleModal').style.display = 'flex';
+    document.getElementById('followupModal').style.display = 'flex';
 }
 
-function confirmRescheduleFromList() {
-    const newDateTime = document.getElementById('newDateTime').value;
-    if (!newDateTime) return showToast('Please select a new date and time', 'error');
+function confirmFollowUpFromList() {
+    const dt = document.getElementById('followupDateTime').value;
+    const notes = document.getElementById('followupNotes') ? document.getElementById('followupNotes').value.trim() : '';
+    if (!dt) return showToast('Please select a follow-up date and time', 'error');
 
     const event = calendar.getEventById(currentAppointmentId);
     if (event) {
-        event.setStart(newDateTime + ':00'); 
-
-        // Update time in Today's Schedule
-        const timeStr = new Date(newDateTime).toLocaleTimeString('en-US', {
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true
+        // We'll create a new 'follow-up' event linked to this appointment for demo purposes
+        const followId = currentAppointmentId + '-followup-' + Date.now();
+        calendar.addEvent({
+            id: followId,
+            title: `${event.title} (Follow-up)`,
+            start: dt,
+            color: '#3498db'
         });
-        const timeEl = document.getElementById('time-' + currentAppointmentId);
-        if (timeEl) timeEl.textContent = timeStr;
+
+        showToast('Follow-up scheduled!', 'success');
+    } else {
+        showToast('Original appointment not found', 'error');
     }
 
-    showToast('Appointment rescheduled!', 'success');
-    closeModal('rescheduleModal');
+    closeModal('followupModal');
 }
 
 // UPDATE APPOINTMENT
@@ -107,7 +111,7 @@ function markStatus(id, status) {
 
 // UNIVERSAL CLOSE MODAL FUNCTION
 function closeModal(modalId = null) {
-    const modals = modalId ? [modalId] : ['appointmentModal', 'rescheduleModal', 'chatModal'];
+    const modals = modalId ? [modalId] : ['appointmentModal', 'followupModal', 'chatModal'];
     modals.forEach(id => {
         const modal = document.getElementById(id);
         if (modal) modal.style.display = 'none';
