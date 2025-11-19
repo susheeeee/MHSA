@@ -19,8 +19,28 @@ if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'counselor') {
 <body>
 
 <div class="navbar">
-    <div class="logo">Counselor • <?= htmlspecialchars($_SESSION['user']) ?></div>
-    <a href="logout.php" class="logout-btn">Logout</a>
+    <div class="left-group" style="display:flex;align-items:center;gap:12px">
+        <button id="profileBtn" class="profile-btn" title="Profile" onclick="toggleProfileDropdown(event)">
+            <span class="avatar"><i class="fa-solid fa-user"></i></span>
+        </button>
+        <div id="profileDropdown" class="profile-dropdown" aria-hidden="true">
+            <div class="profile-row" style="padding:12px;border-bottom:1px solid #f0e6ff;">
+                <div class="avatar" style="width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,#D8BEE5,#b88ed9);display:flex;align-items:center;justify-content:center;font-size:20px;color:white;">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="info" style="margin-left:10px">
+                    <div style="font-weight:700"><?= htmlspecialchars($_SESSION['user']) ?></div>
+                    <small style="color:#8e44ad">Counselor</small>
+                </div>
+            </div>
+            <a href="counselor_profile.php" class="profile-item">View Profile</a>
+            <button class="profile-item" onclick="closeProfileDropdown()">Close</button>
+        </div>
+        <div class="logo">Counselor • <?= htmlspecialchars($_SESSION['user']) ?></div>
+    </div>
+    <div class="right-group">
+        <a href="logout.php" class="logout-btn">Logout</a>
+    </div>
 </div>
 
 <div class="dashboard-content">
@@ -146,6 +166,9 @@ if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'counselor') {
         </div>
     </div>
 </div>
+
+<!-- PROFILE MODAL -->
+<!-- profile dropdown is used instead of modal -->
 
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 <script src="js/counselor.js"></script>
