@@ -57,8 +57,25 @@ $events = $appointments->fetchAll();
 <body>
 
 <div class="navbar">
-    <div class="logo">Student Portal • <?= htmlspecialchars($name) ?></div>
-    <a href="logout.php" class="logout-btn">Logout</a>
+    <div class="left-group" style="display:flex;align-items:center;gap:12px">
+        <button id="profileBtn" class="profile-btn" onclick="toggleProfileDropdown(event)">
+            <span class="avatar" style="background:linear-gradient(135deg,#D8BEE5,#b88ed9)!important;"><i class="fa-solid fa-user"></i></span>
+        </button>
+        <div id="profileDropdown" class="profile-dropdown" aria-hidden="true">
+            <div class="profile-row" style="padding:12px;">
+                <div class="avatar" style="width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,#D8BEE5,#b88ed9);display:flex;align-items:center;justify-content:center;">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="info">
+                    <div style="font-weight:700"><?= htmlspecialchars($name) ?></div>
+                    <small style="color:#8e44ad;">Student</small>
+                </div>
+            </div>
+            <a href="student_profile.php" class="profile-item">My Profile</a>
+            <a href="logout.php" class="profile-item">Logout</a>
+        </div>
+        <div class="logo">Student | <?= htmlspecialchars($name) ?></div>
+    </div>
 </div>
 
 <div class="dashboard-content">
@@ -213,5 +230,21 @@ $events = $appointments->fetchAll();
 
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 <script src="js/booking.js"></script>
+<script>
+
+function toggleProfileDropdown(e) {
+    e.stopPropagation();
+    const dd = document.getElementById('profileDropdown');
+    const hidden = dd.getAttribute('aria-hidden') === 'true';
+    dd.setAttribute('aria-hidden', !hidden);
+}
+document.addEventListener('click', (e) => {
+    const dd = document.getElementById('profileDropdown');
+    const btn = document.getElementById('profileBtn');
+    if (dd && dd.getAttribute('aria-hidden') === 'false' && !dd.contains(e.target) && !btn.contains(e.target)) {
+        dd.setAttribute('aria-hidden', 'true');
+    }
+});
+</script>
 </body>
 </html>
