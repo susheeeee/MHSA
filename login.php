@@ -41,7 +41,6 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
-<!-- Keep your beautiful HTML login form exactly as is -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,8 +52,8 @@ if (isset($_POST['login'])) {
     <div class="login-left">
         <div class="login-box">
             <div class="system-title">
-                <h1>Student Mental Health & Appointment System</h1>
-                <p>Guidance Office</p>
+                <h1>Guidance Office</h1>
+                <p>Student Mental Health & Appointment System</p>
             </div>
             <form method="POST">
                 <div class="input-field">
@@ -65,7 +64,7 @@ if (isset($_POST['login'])) {
                     <label>Password</label>
                     <input type="password" name="password" required>
                 </div>
-                <button type="submit" name="login">Sign In</button>
+                <button type="submit" name="login" class="btn">Sign In</button>
                 <?php if(isset($error)) echo "<p style='color:#e74c3c;margin-top:10px;'>$error</p>"; ?>
             </form>
         </div>
